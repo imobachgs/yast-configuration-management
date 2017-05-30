@@ -140,12 +140,12 @@ module Y2ConfigurationManagement
               PushButton(
                 Id(:ok),
                 Opt(:default, :okButton, :disabled),
-                Label.OKButton
+                Yast::Label.OKButton
               ),
               PushButton(
                 Id(:stop),
                 Opt(:cancelButton, :disabled),
-                Label.StopButton
+                Yast::Label.StopButton
               )
             )
           ),

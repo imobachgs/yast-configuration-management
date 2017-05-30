@@ -76,7 +76,7 @@ module Y2ConfigurationManagement
       # @return [String] Path name to the temporal directory
       def work_dir(scope = :local)
         @work_dir ||= build_work_dir_name
-        prefix = (scope == :target) ? "/" : Installation.destdir
+        prefix = (scope == :target) ? "/" : Yast::Installation.destdir
         Pathname.new(prefix).join(@work_dir)
       end
 
@@ -86,7 +86,7 @@ module Y2ConfigurationManagement
       #
       # @return [Pathname] Relative work_dir path
       def build_work_dir_name
-        path = Pathname.new(Directory.vardir).join("cm-#{Time.now.strftime("%Y%m%d%H%M")}")
+        path = Pathname.new(Yast::Directory.vardir).join("cm-#{Time.now.strftime("%Y%m%d%H%M")}")
         path.relative_path_from(Pathname.new("/"))
       end
     end

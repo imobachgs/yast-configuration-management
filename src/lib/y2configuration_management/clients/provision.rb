@@ -11,7 +11,7 @@ module Y2ConfigurationManagement
     # The real work is implemented by runners.
     #
     # @see Y2ConfigurationManagement::Runners
-    class Provision < Client
+    class Provision < Yast::Client
       # Run the client
       def run
         return false unless runner

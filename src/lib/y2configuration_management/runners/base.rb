@@ -149,7 +149,8 @@ module Y2ConfigurationManagement
       #
       # @return [Pathname] Absolute path to zypp.pid
       def zypp_pid
-        @zypp_pid ||= Pathname.new(Installation.destdir).join("var", "run", "zypp.pid")
+        @zypp_pid ||= Pathname.new(Yast::Installation.destdir)
+          .join("var", "run", "zypp.pid")
       end
 
       # Return the libzypp backup lock file

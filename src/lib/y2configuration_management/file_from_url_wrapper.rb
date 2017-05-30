@@ -15,7 +15,7 @@ module Y2ConfigurationManagement
     #
     # @see Yast::Transfer::FileFromUrl
     def self.get_file(source, target)
-      url_tok = URL.Parse(source.to_s) # in order to take care about port
+      url_tok = Yast::URL.Parse(source.to_s) # in order to take care about port
       get_file_from_url(
         scheme: source.scheme.to_s, host: source.host.to_s,
         urlpath: source.path.to_s, urltok: url_tok, destdir: "/",

@@ -67,7 +67,7 @@ module Y2ConfigurationManagement
       def create_directory_if_needed
         dirname = File.dirname(@file_path)
         return if Yast::FileUtils.Exists(dirname)
-        SCR.Execute(Yast::Path.new(".target.mkdir"), dirname)
+        Yast::SCR.Execute(Yast::Path.new(".target.mkdir"), dirname)
       end
     end
   end

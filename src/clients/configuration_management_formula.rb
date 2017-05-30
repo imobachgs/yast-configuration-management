@@ -156,7 +156,7 @@ module Y2ConfigurationManagement
     def apply_formulas
       Yast::Wizard.SetContents(
         _("Applying formulas"),
-        Label(formulas.select(&:enabled?).map(&:name).join(", ")),
+        Yast::Label(formulas.select(&:enabled?).map(&:name).join(", ")),
         "",
         false,
         false
