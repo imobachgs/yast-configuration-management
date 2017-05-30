@@ -14,7 +14,7 @@ module Yast
         #
         # @return [Boolean] +true+ if run was successful; +false+ otherwise.
         #
-        # @see Yast::ConfigurationManagement::Runners::Base#run_client_mode
+        # @see Y2ConfigurationManagement::Runners::Base#run_client_mode
         def run_client_mode(stdout, stderr)
           with_retries(config.auth_attempts, config.auth_time_out) do
             run_cmd("salt-call", "--log-level", "debug", "state.highstate",
@@ -29,7 +29,7 @@ module Yast
         #
         # @return [Boolean] +true+ if run was successful; +false+ otherwise.
         #
-        # @see Yast::ConfigurationManagement::Runners::Base#run_masterless_mode
+        # @see Y2ConfigurationManagement::Runners::Base#run_masterless_mode
         def run_masterless_mode(stdout, stderr)
           with_retries(config.auth_attempts, config.auth_time_out) do
             run_cmd("salt-call", "--log-level", "debug", "--local",

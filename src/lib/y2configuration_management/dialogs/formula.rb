@@ -44,7 +44,7 @@ module Yast
 
         # Dialog result
         #
-        # @return [Yast::ConfigurationManagement::Salt::Formula] Formula
+        # @return [Y2ConfigurationManagement::Salt::Formula] Formula
         # @see #formula
         def result
           formula

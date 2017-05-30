@@ -3,11 +3,11 @@
 require_relative "../../spec_helper"
 require "configuration_management/cfa/puppet"
 
-describe Yast::ConfigurationManagement::CFA::Puppet do
-  subject(:config) { Yast::ConfigurationManagement::CFA::Puppet.new }
+describe Y2ConfigurationManagement::CFA::Puppet do
+  subject(:config) { Y2ConfigurationManagement::CFA::Puppet.new }
 
   before do
-    stub_const("Yast::ConfigurationManagement::CFA::Puppet::PATH",
+    stub_const("Y2ConfigurationManagement::CFA::Puppet::PATH",
       FIXTURES_PATH.join("puppet", "puppet.conf"))
     config.load
   end

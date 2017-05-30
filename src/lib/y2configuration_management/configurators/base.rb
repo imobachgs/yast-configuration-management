@@ -9,150 +9,148 @@ require "configuration_management/file_from_url_wrapper"
 Yast.import "WFM"
 Yast.import "Installation"
 
-module Yast
-  module ConfigurationManagement
-    module Configurators
-      # This class handles the general bit of configuring/running CM systems.
-      class Base
-        include Yast::Logger
+module Y2ConfigurationManagement
+  module Configurators
+    # This class handles the general bit of configuring/running CM systems.
+    class Base
+      include Yast::Logger
 
-        # @return [Configurations::Salt] Configuration object
-        attr_reader :config
+      # @return [Configurations::Salt] Configuration object
+      attr_reader :config
 
-        class << self
-          # Method to define modes
-          #
-          # @param mode [Symbol] Operation mode (:client, :masterless)
-          # @param block [Proc]] Code to execute in the given module
-          def mode(mode, &block)
-            define_method("prepare_#{mode}", block)
-          end
-
-          # Run a command
-          #
-          # Commands are defined as classes in the Yast::ConfigurationManagement::Commands namespace
-          #
-          # @return [Object] Commands return value
-          #
-          # @see Yast::ConfigurationManagement::Commands namespace
-          def command(name, *args)
-            Yast::ConfigurationManagement::Commands::Base.find(name).run(*args)
-          end
+      class << self
+        # Method to define modes
+        #
+        # @param mode [Symbol] Operation mode (:client, :masterless)
+        # @param block [Proc]] Code to execute in the given module
+        def mode(mode, &block)
+          define_method("prepare_#{mode}", block)
         end
 
-        class << self
-          # Current configurator
-          #
-          # @return [Yast::ConfigurationManagement::Configurators::Base] Current configurator
-          attr_reader :current
+        # Run a command
+        #
+        # Commands are defined as classes in the Y2ConfigurationManagement::Commands namespace
+        #
+        # @return [Object] Commands return value
+        #
+        # @see Y2ConfigurationManagement::Commands namespace
+        def command(name, *args)
+          Y2ConfigurationManagement::Commands::Base.find(name).run(*args)
+        end
+      end
 
-          # Set the configurator to use
-          #
-          # @param configurator [Yast::ConfigurationManagement::Configurators::Base]
-          #   Configurator to be used
-          # @return [Yast::ConfigurationManagement::Configurators::Base]
-          #   Current configurator
-          attr_writer :current
+      class << self
+        # Current configurator
+        #
+        # @return [Y2ConfigurationManagement::Configurators::Base] Current configurator
+        attr_reader :current
 
-          # Return the configurator for a given CM system and a configuration
-          #
-          # @param type   [String] CM type ("salt", "puppet", etc.)
-          # @param config [Hash]   Configurator configuration
-          # @return [Yast::ConfigurationManagement::Configurators::Base]
-          #   Configurator to handle 'type' configuration
-          #
-          # @see .class_for
-          def for(config)
-            class_for(config.type).new(config)
-          end
+        # Set the configurator to use
+        #
+        # @param configurator [Y2ConfigurationManagement::Configurators::Base]
+        #   Configurator to be used
+        # @return [Y2ConfigurationManagement::Configurators::Base]
+        #   Current configurator
+        attr_writer :current
 
-          # Return the configurator class to handle a given CM system
-          #
-          # It tries to find the definition.
-          #
-          # @param type [String] CM type ("salt", "puppet", etc.)
-          # @return [Class] Configurator class
-          def class_for(type)
-            require "configuration_management/configurators/#{type}"
-            Yast::ConfigurationManagement::Configurators.const_get type.capitalize
-          rescue NameError, LoadError
-            raise "Configurator for '#{type}' not found"
-          end
+        # Return the configurator for a given CM system and a configuration
+        #
+        # @param type   [String] CM type ("salt", "puppet", etc.)
+        # @param config [Hash]   Configurator configuration
+        # @return [Y2ConfigurationManagement::Configurators::Base]
+        #   Configurator to handle 'type' configuration
+        #
+        # @see .class_for
+        def for(config)
+          class_for(config.type).new(config)
         end
 
-        # Constructor
+        # Return the configurator class to handle a given CM system
         #
-        # @param config [Configurations::Salt] Configuration object
-        def initialize(config)
-          log.info "Initializing configurator #{self.class.name}"
-          @config = config
+        # It tries to find the definition.
+        #
+        # @param type [String] CM type ("salt", "puppet", etc.)
+        # @return [Class] Configurator class
+        def class_for(type)
+          require "configuration_management/configurators/#{type}"
+          Y2ConfigurationManagement::Configurators.const_get type.capitalize
+        rescue NameError, LoadError
+          raise "Configurator for '#{type}' not found"
         end
+      end
 
-        # Return the list of packages to install
-        #
-        # @example List of packages to install
-        #   configurator.packages #=> { "install" => ["pkg1", "pkg2"] }
-        #
-        # @example Lists of packages to install and remove
-        #   configurator.packages #=> { "install" => ["pkg1", "pkg2"], "remove" => ["pkg3"] }
-        #
-        # @return [Hash] List of packages to install/remove
-        def packages
-          {}
-        end
+      # Constructor
+      #
+      # @param config [Configurations::Salt] Configuration object
+      def initialize(config)
+        log.info "Initializing configurator #{self.class.name}"
+        @config = config
+      end
 
-        # Return a list of services which have to be enabled
-        #
-        # @return [[Array<String>] List of services
-        def services
-          []
-        end
+      # Return the list of packages to install
+      #
+      # @example List of packages to install
+      #   configurator.packages #=> { "install" => ["pkg1", "pkg2"] }
+      #
+      # @example Lists of packages to install and remove
+      #   configurator.packages #=> { "install" => ["pkg1", "pkg2"], "remove" => ["pkg3"] }
+      #
+      # @return [Hash] List of packages to install/remove
+      def packages
+        {}
+      end
 
-        # Prepare the system to run the provisioner
-        #
-        # Work directory is created (only in :client mode) and, after that, the
-        # control is passed to the required configurator. See mode definitions
-        # in the given configurator.
-        #
-        # @see .mode
-        def prepare
-          ::FileUtils.mkdir_p(config.work_dir) if mode?(:masterless)
-          send("prepare_#{config.mode}")
-        end
+      # Return a list of services which have to be enabled
+      #
+      # @return [[Array<String>] List of services
+      def services
+        []
+      end
 
-        # Determines whether the configurator is operating in the given module
-        #
-        # @return [Boolean] true if it's operating in the given mode; false otherwise.
-        def mode?(value)
-          config.mode == value
-        end
+      # Prepare the system to run the provisioner
+      #
+      # Work directory is created (only in :client mode) and, after that, the
+      # control is passed to the required configurator. See mode definitions
+      # in the given configurator.
+      #
+      # @see .mode
+      def prepare
+        ::FileUtils.mkdir_p(config.work_dir) if mode?(:masterless)
+        send("prepare_#{config.mode}")
+      end
 
-        # Local file name of fetched configuration
-        CONFIG_LOCAL_FILENAME = "config.tgz".freeze
+      # Determines whether the configurator is operating in the given module
+      #
+      # @return [Boolean] true if it's operating in the given mode; false otherwise.
+      def mode?(value)
+        config.mode == value
+      end
 
-        # Fetchs CM configuration (states, recipes, etc.)
-        #
-        # FIXME: this code should be in another class. We want to extend this
-        # mechanism to support, for example, git repositories.
-        #
-        # @return [Boolean] true if configuration was fetched; false otherwise.
-        def fetch_config(url, target)
-          config_file = target.join(CONFIG_LOCAL_FILENAME)
-          return false unless FileFromUrlWrapper.get_file(url, config_file)
-          Yast::Execute.locally("tar", "xf", config_file.to_s, "-C", target.to_s)
-        end
+      # Local file name of fetched configuration
+      CONFIG_LOCAL_FILENAME = "config.tgz".freeze
 
-        # Fetch keys
-        #
-        # Fetch keys to perform authentication
-        #
-        # @param url [URI] Base URL to search the keys
-        # @param private_key_path [Pathname] Path to private key
-        # @param public_key_path  [Pathname] Path to public key
-        def fetch_keys(url, private_key_path, public_key_path)
-          return false if url.nil? # FIXME: should be move to the caller
-          KeyFinder.new(keys_url: url).fetch_to(private_key_path, public_key_path)
-        end
+      # Fetchs CM configuration (states, recipes, etc.)
+      #
+      # FIXME: this code should be in another class. We want to extend this
+      # mechanism to support, for example, git repositories.
+      #
+      # @return [Boolean] true if configuration was fetched; false otherwise.
+      def fetch_config(url, target)
+        config_file = target.join(CONFIG_LOCAL_FILENAME)
+        return false unless FileFromUrlWrapper.get_file(url, config_file)
+        Yast::Execute.locally("tar", "xf", config_file.to_s, "-C", target.to_s)
+      end
+
+      # Fetch keys
+      #
+      # Fetch keys to perform authentication
+      #
+      # @param url [URI] Base URL to search the keys
+      # @param private_key_path [Pathname] Path to private key
+      # @param public_key_path  [Pathname] Path to public key
+      def fetch_keys(url, private_key_path, public_key_path)
+        return false if url.nil? # FIXME: should be move to the caller
+        KeyFinder.new(keys_url: url).fetch_to(private_key_path, public_key_path)
       end
     end
   end

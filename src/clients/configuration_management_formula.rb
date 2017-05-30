@@ -55,7 +55,7 @@ module ConfigurationManagement
       # dialog caption
       Wizard.SetContents(_("Initializing..."), Empty(), "", false, true)
 
-      self.formulas = Yast::ConfigurationManagement::Salt::Formula.all(formulas_root)
+      self.formulas = Y2ConfigurationManagement::Salt::Formula.all(formulas_root)
       if formulas && !formulas.empty?
         ret = start_workflow
       else
@@ -148,7 +148,7 @@ module ConfigurationManagement
       end
       @last_formula_idx = formulas.index(formula)
 
-      widget = Yast::ConfigurationManagement::Dialogs::Formula.new(formula)
+      widget = Y2ConfigurationManagement::Dialogs::Formula.new(formula)
       CWM.show(HBox(widget), caption: formula.name)
     end
 
@@ -166,7 +166,7 @@ module ConfigurationManagement
       states = enabled_formulas.map(&:name)
       [pillar_root, states_root].each do |path|
         ::FileUtils.mkdir_p(path) unless File.exist?(path)
-        top = Yast::ConfigurationManagement::CFA::SaltTop.new(path: File.join(path, "top.sls"))
+        top = Y2ConfigurationManagement::CFA::SaltTop.new(path: File.join(path, "top.sls"))
         top.load
         top.add_states(states)
         top.save

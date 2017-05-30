@@ -4,8 +4,8 @@ require_relative "../../spec_helper"
 require "configuration_management/configurations/base"
 require "tmpdir"
 
-describe Yast::ConfigurationManagement::Configurations::Base do
-  subject(:config) { Yast::ConfigurationManagement::Configurations::Base.new(profile) }
+describe Y2ConfigurationManagement::Configurations::Base do
+  subject(:config) { Y2ConfigurationManagement::Configurations::Base.new(profile) }
 
   let(:master) { "some-server.suse.com" }
   let(:auth_attempts) { 3 }
@@ -22,7 +22,7 @@ describe Yast::ConfigurationManagement::Configurations::Base do
   end
 
   before do
-    stub_const("Yast::ConfigurationManagement::Configurations::Base::DEFAULT_PATH", default_path)
+    stub_const("Y2ConfigurationManagement::Configurations::Base::DEFAULT_PATH", default_path)
   end
 
   describe "#mode" do

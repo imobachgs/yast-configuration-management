@@ -12,7 +12,7 @@ module Yast
         #
         # @return [Boolean] +true+ if run was successful; +false+ otherwise.
         #
-        # @see Yast::ConfigurationManagement::Runners::Base#run_client_mode
+        # @see Y2ConfigurationManagement::Runners::Base#run_client_mode
         def run_client_mode(stdout, stderr)
           with_retries(config.auth_attempts) do
             run_cmd("puppet", "agent", "--onetime",
@@ -28,7 +28,7 @@ module Yast
         #
         # @return [Boolean] +true+ if run was successful; +false+ otherwise.
         #
-        # @see Yast::ConfigurationManagement::Runners::Base#run_masterless_mode
+        # @see Y2ConfigurationManagement::Runners::Base#run_masterless_mode
         def run_masterless_mode(stdout, stderr)
           with_retries(config.auth_attempts) do
             run_cmd("puppet", "apply", "--modulepath",

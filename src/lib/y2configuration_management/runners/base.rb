@@ -31,7 +31,7 @@ module Yast
           # @return [Class] Runner class
           def class_for(type)
             require "configuration_management/runners/#{type}"
-            Yast::ConfigurationManagement::Runners.const_get type.capitalize
+            Y2ConfigurationManagement::Runners.const_get type.capitalize
           rescue NameError, LoadError
             raise UnknownRunner, "Runner for '#{type}' not found"
           end

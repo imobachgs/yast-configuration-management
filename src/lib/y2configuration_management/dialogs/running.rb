@@ -174,12 +174,12 @@ module Yast
           # String encoding to use in order to avoid problems in the dialog
           ENCODING = "UTF-8".freeze
 
-          # @return [Yast::ConfigurationManagement::Dialogs::Running] Dialog to update
+          # @return [Y2ConfigurationManagement::Dialogs::Running] Dialog to update
           attr_reader :dialog
 
           # Constructor
           #
-          # @param dialog [Yast::ConfigurationManagement::Dialogs::Running] Dialog to update
+          # @param dialog [Y2ConfigurationManagement::Dialogs::Running] Dialog to update
           def initialize(dialog)
             Yast.import "UI"
             @dialog = dialog

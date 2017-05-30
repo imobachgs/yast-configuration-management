@@ -4,13 +4,13 @@ require_relative "../../spec_helper"
 require "configuration_management/runners/salt"
 require "configuration_management/configurations/salt"
 
-describe Yast::ConfigurationManagement::Runners::Salt do
-  subject(:runner) { Yast::ConfigurationManagement::Runners::Salt.new(config) }
+describe Y2ConfigurationManagement::Runners::Salt do
+  subject(:runner) { Y2ConfigurationManagement::Runners::Salt.new(config) }
   let(:master) { "salt.suse.de" }
   let(:tmpdir) { "/mnt/tmp/yast_cm" }
 
   let(:config) do
-    Yast::ConfigurationManagement::Configurations::Salt.new(master: master)
+    Y2ConfigurationManagement::Configurations::Salt.new(master: master)
   end
 
   before do

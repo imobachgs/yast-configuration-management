@@ -3,8 +3,8 @@
 require_relative "../../spec_helper"
 require "configuration_management/cfa/salt_top"
 
-describe Yast::ConfigurationManagement::CFA::SaltTop do
-  subject(:file) { Yast::ConfigurationManagement::CFA::SaltTop.new(path: path) }
+describe Y2ConfigurationManagement::CFA::SaltTop do
+  subject(:file) { Y2ConfigurationManagement::CFA::SaltTop.new(path: path) }
   let(:path) { FIXTURES_PATH.join("salt", "top.sls") }
 
   describe "#load" do

@@ -4,15 +4,15 @@ require_relative "../../spec_helper"
 require "configuration_management/runners/puppet"
 require "configuration_management/configurations/puppet"
 
-describe Yast::ConfigurationManagement::Runners::Puppet do
-  subject(:runner) { Yast::ConfigurationManagement::Runners::Puppet.new(config) }
+describe Y2ConfigurationManagement::Runners::Puppet do
+  subject(:runner) { Y2ConfigurationManagement::Runners::Puppet.new(config) }
 
   let(:mode) { :masterless }
   let(:master) { "puppet.suse.de" }
   let(:tmpdir) { "/mnt/tmp/yast_cm" }
 
   let(:config) do
-    Yast::ConfigurationManagement::Configurations::Puppet.new(master: master)
+    Y2ConfigurationManagement::Configurations::Puppet.new(master: master)
   end
 
   before do
