@@ -1,6 +1,6 @@
 require "y2configuration_management/configurations/base"
 
-module ConfigurationManagement
+module Y2ConfigurationManagement
   module Configurations
     # This class represents the module's configuration when
     # using Puppet.

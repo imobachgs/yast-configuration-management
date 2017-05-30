@@ -6,7 +6,7 @@ require "y2configuration_management/dialogs/formula"
 require "fileutils"
 require "y2configuration_management/cfa/salt_top"
 
-module ConfigurationManagement
+module Y2ConfigurationManagement
   # Client to configure formulas
   class ConfigurationManagementFormula < Yast::Client
     include Yast::Logger

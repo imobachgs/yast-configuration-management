@@ -4,7 +4,7 @@ require "y2configuration_management/cfa/minion"
 require "y2configuration_management/configurators/base"
 require "pathname"
 
-module ConfigurationManagement
+module Y2ConfigurationManagement
   module Configurators
     # Salt configurator
     #

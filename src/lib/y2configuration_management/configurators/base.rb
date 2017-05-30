@@ -137,7 +137,7 @@ module Y2ConfigurationManagement
       # @return [Boolean] true if configuration was fetched; false otherwise.
       def fetch_config(url, target)
         config_file = target.join(CONFIG_LOCAL_FILENAME)
-        return false unless FileFromUrlWrapper.get_file(url, config_file)
+        return false unless Y2ConfigurationManagement::FileFromUrlWrapper.get_file(url, config_file)
         Yast::Execute.locally("tar", "xf", config_file.to_s, "-C", target.to_s)
       end
 
