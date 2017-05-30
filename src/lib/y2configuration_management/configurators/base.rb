@@ -3,8 +3,8 @@ require "uri"
 require "transfer/file_from_url"
 require "pathname"
 require "yast2/execute"
-require "configuration_management/key_finder"
-require "configuration_management/file_from_url_wrapper"
+require "y2configuration_management/key_finder"
+require "y2configuration_management/file_from_url_wrapper"
 
 Yast.import "WFM"
 Yast.import "Installation"
@@ -72,7 +72,7 @@ module Y2ConfigurationManagement
         # @param type [String] CM type ("salt", "puppet", etc.)
         # @return [Class] Configurator class
         def class_for(type)
-          require "configuration_management/configurators/#{type}"
+          require "y2configuration_management/configurators/#{type}"
           Y2ConfigurationManagement::Configurators.const_get type.capitalize
         rescue NameError, LoadError
           raise "Configurator for '#{type}' not found"

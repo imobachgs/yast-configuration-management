@@ -1,6 +1,6 @@
 require "yast"
 require "uri"
-require "configuration_management/file_from_url_wrapper"
+require "y2configuration_management/file_from_url_wrapper"
 
 module Y2ConfigurationManagement
   # This class retrieves keys from a given URL

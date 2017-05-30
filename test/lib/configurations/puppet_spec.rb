@@ -1,7 +1,7 @@
 #!/usr/bin/env rspec
 
 require_relative "../../spec_helper"
-require "configuration_management/configurations/puppet"
+require "y2configuration_management/configurations/puppet"
 require "tmpdir"
 
 describe Y2ConfigurationManagement::Configurations::Puppet do

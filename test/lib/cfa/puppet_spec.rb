@@ -1,7 +1,7 @@
 #!/usr/bin/env rspec
 
 require_relative "../../spec_helper"
-require "configuration_management/cfa/puppet"
+require "y2configuration_management/cfa/puppet"
 
 describe Y2ConfigurationManagement::CFA::Puppet do
   subject(:config) { Y2ConfigurationManagement::CFA::Puppet.new }

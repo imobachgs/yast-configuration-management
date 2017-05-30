@@ -1,10 +1,10 @@
 require "yaml"
 require "pathname"
 require "yast"
-require "configuration_management/salt/formula"
-require "configuration_management/dialogs/formula"
+require "y2configuration_management/salt/formula"
+require "y2configuration_management/dialogs/formula"
 require "fileutils"
-require "configuration_management/cfa/salt_top"
+require "y2configuration_management/cfa/salt_top"
 
 module ConfigurationManagement
   # Client to configure formulas

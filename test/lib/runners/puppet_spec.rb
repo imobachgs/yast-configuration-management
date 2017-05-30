@@ -1,8 +1,8 @@
 #!/usr/bin/env rspec
 
 require_relative "../../spec_helper"
-require "configuration_management/runners/puppet"
-require "configuration_management/configurations/puppet"
+require "y2configuration_management/runners/puppet"
+require "y2configuration_management/configurations/puppet"
 
 describe Y2ConfigurationManagement::Runners::Puppet do
   subject(:runner) { Y2ConfigurationManagement::Runners::Puppet.new(config) }

@@ -1,5 +1,5 @@
 require_relative "../../spec_helper"
-require "configuration_management/dialogs/running"
+require "y2configuration_management/dialogs/running"
 
 describe Y2ConfigurationManagement::Dialogs::Running do
   Yast.import "UI"

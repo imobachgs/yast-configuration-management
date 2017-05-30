@@ -1,8 +1,8 @@
 #!/usr/bin/env rspec
 
 require_relative "../../spec_helper"
-require "configuration_management/configurators/base"
-require "configuration_management/configurations/salt"
+require "y2configuration_management/configurators/base"
+require "y2configuration_management/configurations/salt"
 
 describe Y2ConfigurationManagement::Configurators::Base do
   subject(:configurator) { Y2ConfigurationManagement::Configurators::Base.new(config) }

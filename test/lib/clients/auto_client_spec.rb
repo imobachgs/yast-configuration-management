@@ -1,8 +1,8 @@
 #!/usr/bin/env rspec
 
 require_relative "../../spec_helper"
-require "configuration_management/clients/auto_client"
-require "configuration_management/configurators/salt"
+require "y2configuration_management/clients/auto_client"
+require "y2configuration_management/configurators/salt"
 
 describe Y2ConfigurationManagement::AutoClient do
   subject(:client) { described_class.new }

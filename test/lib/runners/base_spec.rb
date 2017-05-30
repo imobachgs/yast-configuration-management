@@ -1,7 +1,7 @@
 #!/usr/bin/env rspec
 
 require_relative "../../spec_helper"
-require "configuration_management/runners/base"
+require "y2configuration_management/runners/base"
 
 describe Y2ConfigurationManagement::Runners::Base do
   subject(:runner) { Y2ConfigurationManagement::Runners::Base.new(config) }

@@ -1,8 +1,8 @@
 require "yast"
 require "installation/finish_client"
-require "configuration_management/configurators/base"
-require "configuration_management/configurations/base"
-require "configuration_management/clients/provision"
+require "y2configuration_management/configurators/base"
+require "y2configuration_management/configurations/base"
+require "y2configuration_management/clients/provision"
 
 Yast.import "Service"
 

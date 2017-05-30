@@ -1,7 +1,7 @@
 #!/usr/bin/env rspec
 
 require_relative "../../spec_helper"
-require "configuration_management/cfa/salt_top"
+require "y2configuration_management/cfa/salt_top"
 
 describe Y2ConfigurationManagement::CFA::SaltTop do
   subject(:file) { Y2ConfigurationManagement::CFA::SaltTop.new(path: path) }

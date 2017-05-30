@@ -1,8 +1,8 @@
 #!/usr/bin/env rspec
 
 require_relative "../../spec_helper"
-require "configuration_management/clients/provision"
-require "configuration_management/configurations/base"
+require "y2configuration_management/clients/provision"
+require "y2configuration_management/configurations/base"
 
 describe Y2ConfigurationManagement::Clients::Provision do
   subject(:client) { described_class.new }

@@ -1,7 +1,7 @@
 #!/usr/bin/env rspec
 
 require_relative "../spec_helper"
-require "configuration_management/key_finder"
+require "y2configuration_management/key_finder"
 require "pathname"
 require "fileutils"
 

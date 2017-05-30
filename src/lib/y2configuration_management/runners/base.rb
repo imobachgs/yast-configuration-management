@@ -30,7 +30,7 @@ module Yast
           # @param type [String] CM type ("salt", "puppet", etc.)
           # @return [Class] Runner class
           def class_for(type)
-            require "configuration_management/runners/#{type}"
+            require "y2configuration_management/runners/#{type}"
             Y2ConfigurationManagement::Runners.const_get type.capitalize
           rescue NameError, LoadError
             raise UnknownRunner, "Runner for '#{type}' not found"

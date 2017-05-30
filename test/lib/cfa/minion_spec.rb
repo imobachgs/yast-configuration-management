@@ -1,7 +1,7 @@
 #!/usr/bin/env rspec
 
 require_relative "../../spec_helper"
-require "configuration_management/cfa/minion"
+require "y2configuration_management/cfa/minion"
 require "tmpdir"
 
 describe Y2ConfigurationManagement::CFA::Minion do

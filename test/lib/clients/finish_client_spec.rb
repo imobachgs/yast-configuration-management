@@ -1,7 +1,7 @@
 #!/usr/bin/env rspec
 
 require_relative "../../spec_helper"
-require "configuration_management/clients/configuration_management_finish"
+require "y2configuration_management/clients/configuration_management_finish"
 
 describe Y2ConfigurationManagement::ConfigurationManagementFinish do
   subject(:client) { described_class.new }

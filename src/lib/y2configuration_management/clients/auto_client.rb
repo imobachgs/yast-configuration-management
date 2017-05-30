@@ -1,7 +1,7 @@
 require "yast"
 require "installation/auto_client"
-require "configuration_management/configurators/base"
-require "configuration_management/configurations/base"
+require "y2configuration_management/configurators/base"
+require "y2configuration_management/configurations/base"
 require "pathname"
 
 Yast.import "PackagesProposal"

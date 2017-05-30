@@ -1,7 +1,7 @@
 #!/usr/bin/env rspec
 
 require_relative "../spec_helper"
-require "configuration_management/file_from_url_wrapper"
+require "y2configuration_management/file_from_url_wrapper"
 require "uri"
 require "pathname"
 

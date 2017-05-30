@@ -1,7 +1,7 @@
 #!/usr/bin/env rspec
 
 require_relative "../../spec_helper"
-require "configuration_management/configurations/base"
+require "y2configuration_management/configurations/base"
 require "tmpdir"
 
 describe Y2ConfigurationManagement::Configurations::Base do

@@ -1,8 +1,8 @@
 #!/usr/bin/env rspec
 
 require_relative "../../spec_helper"
-require "configuration_management/runners/salt"
-require "configuration_management/configurations/salt"
+require "y2configuration_management/runners/salt"
+require "y2configuration_management/configurations/salt"
 
 describe Y2ConfigurationManagement::Runners::Salt do
   subject(:runner) { Y2ConfigurationManagement::Runners::Salt.new(config) }

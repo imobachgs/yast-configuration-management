@@ -1,4 +1,4 @@
-require "configuration_management/runners/base"
+require "y2configuration_management/runners/base"
 
 module Yast
   module ConfigurationManagement

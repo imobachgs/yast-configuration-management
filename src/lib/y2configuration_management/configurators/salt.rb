@@ -1,7 +1,7 @@
 require "yast"
 require "cheetah"
-require "configuration_management/cfa/minion"
-require "configuration_management/configurators/base"
+require "y2configuration_management/cfa/minion"
+require "y2configuration_management/configurators/base"
 require "pathname"
 
 module ConfigurationManagement

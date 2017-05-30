@@ -48,7 +48,7 @@ module Y2ConfigurationManagement
         end
 
         def class_for(type)
-          require "configuration_management/configurations/#{type}"
+          require "y2configuration_management/configurations/#{type}"
           Y2ConfigurationManagement::Configurations.const_get type.capitalize
         rescue NameError, LoadError
           raise "Configuration handler for '#{type}' not found"

@@ -2,7 +2,7 @@
 
 require_relative "../../spec_helper"
 
-require "configuration_management/salt/formula"
+require "y2configuration_management/salt/formula"
 
 describe Y2ConfigurationManagement::Salt::Formula do
   FORMULAS_PATH = FIXTURES_PATH.join("formulas")

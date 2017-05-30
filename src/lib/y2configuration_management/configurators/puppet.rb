@@ -1,7 +1,7 @@
 require "yast"
 require "cheetah"
-require "configuration_management/cfa/puppet"
-require "configuration_management/configurators/base"
+require "y2configuration_management/cfa/puppet"
+require "y2configuration_management/configurators/base"
 require "pathname"
 
 Yast.import "Pkg"

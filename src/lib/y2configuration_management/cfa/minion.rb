@@ -1,6 +1,6 @@
 require "cfa/base_model"
 require "cfa/matcher"
-require "configuration_management/cfa/yaml_parser"
+require "y2configuration_management/cfa/yaml_parser"
 
 module Y2ConfigurationManagement
   module CFA

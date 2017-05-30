@@ -1,7 +1,7 @@
 require "yast"
-require "configuration_management/runners/base"
-require "configuration_management/dialogs/running"
-require "configuration_management/configurations/base"
+require "y2configuration_management/runners/base"
+require "y2configuration_management/dialogs/running"
+require "y2configuration_management/configurations/base"
 
 module Y2ConfigurationManagement
   module Clients

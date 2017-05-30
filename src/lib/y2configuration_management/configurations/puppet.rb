@@ -1,4 +1,4 @@
-require "configuration_management/configurations/base"
+require "y2configuration_management/configurations/base"
 
 module ConfigurationManagement
   module Configurations
