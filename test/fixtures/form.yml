@@ -6,6 +6,7 @@ person:
     "$default": "John Doe"
   email:
     "$type": email
+    "$default": "somebody@example.net"
   address:
     "$type": group
     street:
@@ -21,6 +22,9 @@ person:
     "$type": edit-group
     "$minItems": 1
     "$maxItems": 4
+    "$default":
+      - brand: ACME
+        disks: 1
     "$prototype":
       $type: group
       brand:
