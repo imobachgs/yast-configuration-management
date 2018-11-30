@@ -39,6 +39,7 @@ module Y2ConfigurationManagement
       # @param controller   [Y2ConfigurationManagement::Salt::FormController] Form controller
       # @return [Array<Y2ConfigurationManagement::Widgets::AbstractWidget>] List of widgets
       def build(form_element)
+        byebug
         Array(form_element).map { |e| build_element(e) }
       end
 

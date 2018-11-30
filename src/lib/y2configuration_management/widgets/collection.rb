@@ -49,10 +49,10 @@ module Y2ConfigurationManagement
       def contents
         VBox(
           Table(
-            Id("table_#{widget_id}"),
+            Id("table:#{path}"),
             Opt(:notify, :immediate),
-            Header(label),
-            []
+            Header(*headers),
+            rows
           ),
           HBox(
             HStretch(),
@@ -90,6 +90,19 @@ module Y2ConfigurationManagement
       end
 
     private
+
+      def rows
+        controller.get(path).map do |item|
+          Item(Id(item.values.first), *item.values)
+        end
+      end
+
+      def headers
+        # FIXME: Get this information from the spec
+        values = controller.get(path)
+        return values.first.keys if values.first
+        []
+      end
 
       # Returns the index of the selected row
       #
